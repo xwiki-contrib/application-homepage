@@ -31,7 +31,6 @@ import org.xwiki.test.ui.po.ViewPage;
  * Tests for editing the Home Page.
  * 
  * @version $Id: dbf8b94f73ed6ca43de9822d38474b2d2a790a65 $
- * @since 6.2M1
  */
 public class HomePageTest extends AbstractTest
 {

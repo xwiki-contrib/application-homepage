@@ -25,7 +25,6 @@ import org.xwiki.test.ui.po.ViewPage;
  * Represents the actions possible on the Home Page.
  * 
  * @version $Id: c7ef05ca01780703ce56966dfc2a5f430ab01773 $
- * @since 6.2M1
  */
 public class HomePage extends ViewPage
 {

@@ -33,7 +33,6 @@ import org.xwiki.test.ui.po.editor.WYSIWYGEditPage;
  * Represents the part of the home page that lists the existing spaces and allows the user to create a new space.
  * 
  * @version $Id: 95250964ec9e5d4897f827b6335bed9b411daf3e $
- * @since 6.2M1
  */
 public class SpacesPane extends BaseElement
 {

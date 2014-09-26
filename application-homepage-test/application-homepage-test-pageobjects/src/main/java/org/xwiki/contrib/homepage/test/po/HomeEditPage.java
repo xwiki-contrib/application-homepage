@@ -28,7 +28,6 @@ import org.xwiki.test.ui.po.LiveTableElement;
  * Represents a Home PAge being edited.
  *
  * @version $Id: 6b749eae0842d8350e14d3c8d4dc98b9c65713ed $
- * @since 6.2M1
  */
 public class HomeEditPage extends InlinePage
 {
