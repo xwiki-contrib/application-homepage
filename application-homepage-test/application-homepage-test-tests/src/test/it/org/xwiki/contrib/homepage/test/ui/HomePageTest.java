@@ -22,6 +22,7 @@ package org.xwiki.contrib.homepage.test.ui;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.xwiki.contrib.homepage.test.po.HomeEditPage;
 import org.xwiki.contrib.homepage.test.po.HomePage;
 import org.xwiki.test.ui.AbstractTest;
@@ -37,8 +38,10 @@ public class HomePageTest extends AbstractTest
     @Test
     public void edit() throws Exception
     {
-        // Create a test user
-        getUtil().createUserAndLogin(getClass().getSimpleName() + "_" + getTestMethodName(), "password");
+        // Create a test user.
+        // Make sure to view hidden docs as Dashboard.WebHome is a hidden doc and otherwise it won't appear in the LT.
+        getUtil().createUserAndLogin(getClass().getSimpleName() + "_" + getTestMethodName(), "password",
+            "displayHiddenDocuments", true);
 
         // Navigate to the home page
         HomePage homePage = HomePage.gotoPage();
@@ -55,7 +58,10 @@ public class HomePageTest extends AbstractTest
         // content. Click on the button to accept loosing the custom content.
         homePage.edit();
         editPage = new HomeEditPage();
-        editPage.usePageAsHomePage("Dashboard");
-
+        editPage.usePageAsHomePage("WebHome", "Dashboard");
+        String errorText = getDriver().findElement(By.xpath("//div[contains(@class, 'errormessage')]")).getText();
+        assertEquals("You have custom content and thus this home page has not been modified to point to the "
+            + "xwiki:Dashboard.WebHome page you had selected. You must first remove your custom content to display "
+            + "the content of another page.", errorText);
     }
 }

@@ -19,10 +19,12 @@
  */
 package org.xwiki.contrib.homepage.test.po;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.xwiki.test.ui.po.InlinePage;
 import org.xwiki.test.ui.po.LiveTableElement;
+import org.xwiki.test.ui.po.ViewPage;
 
 /**
  * Represents a Home PAge being edited.
@@ -43,12 +45,14 @@ public class HomeEditPage extends InlinePage
         this.customContentElement.sendKeys(content);
     }
 
-    public void usePageAsHomePage(String spaceName)
+    public ViewPage usePageAsHomePage(String pageName, String spaceName)
     {
         LiveTableElement liveTableElement = new LiveTableElement("documents");
         liveTableElement.waitUntilReady();
+        liveTableElement.filterColumn("xwiki-livetable-documents-filter-1", pageName);
         liveTableElement.filterColumn("xwiki-livetable-documents-filter-2", spaceName);
-        WebElement rowElement = liveTableElement.getRow(0);
-
+        // Click on "use as home page" link
+        getDriver().findElement(By.xpath("//a[contains(@class, 'actionuse')]")).click();
+        return new ViewPage();
     }
 }
